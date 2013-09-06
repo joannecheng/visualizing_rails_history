@@ -11,8 +11,8 @@ d3.csv '/data.cvs', (error, data) ->
 
   minDate = Date.parse d3.min _.pluck data, 'created_at'
   maxDate = Date.parse d3.max _.pluck data, 'closed_at'
-  xScale = d3.time.scale().domain([minDate, Date.parse(new Date())]).range([3, width-3])
-  yScale = d3.scale.linear().domain([0, Date.parse(new Date()) - minDate]).range([298, 50])
+  xScale = d3.time.scale().domain([minDate, maxDate]).range([3, width-3])
+  yScale = d3.scale.linear().domain([0, maxDate - minDate]).range([298, 50])
 
   xAxis = d3.svg.axis()
       .scale(xScale)
