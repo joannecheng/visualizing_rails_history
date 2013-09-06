@@ -1,5 +1,4 @@
 d3.csv '/data.cvs', (error, data) ->
-  window.d = data
   insertMeanIntoDatum = (d) ->
     created_at = Date.parse(d.created_at)
     closed_at = Date.parse(d.closed_at)
