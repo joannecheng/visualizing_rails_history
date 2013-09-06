@@ -1,15 +1,31 @@
-d3.csv '/data.cvs', (error, data) ->
-  insertMeanIntoDatum = (d) ->
-    created_at = Date.parse(d.created_at)
-    closed_at = Date.parse(d.closed_at)
-    [created_at, created_at + 10, closed_at - 10, closed_at]
+class PullRequestData
+  constructor: (@data) ->
+    @insertMeanIntoDataRow()
 
+  insertMeanIntoDataRow: ->
+    dataWithMean = _.map @data, (d) ->
+      created_at = Date.parse(d.created_at)
+      closed_at = Date.parse(d.closed_at)
+      [created_at, created_at + 10, closed_at - 10, closed_at]
+    @meanData = dataWithMean
+
+  graphData: =>
+    @meanData ||= @insertMeanIntoDataRow()
+
+  minDate: ->
+    Date.parse d3.min _.pluck @data, 'created_at'
+
+  maxDate: ->
+    Date.parse d3.max _.pluck @data, 'closed_at'
+
+d3.csv '/data.cvs', (error, data) ->
   width = 1000
   height = 300
   paddingBottom = 20
+  pullRequestData = new PullRequestData(data)
+  minDate = pullRequestData.minDate()
+  maxDate = pullRequestData.maxDate()
 
-  minDate = Date.parse d3.min _.pluck data, 'created_at'
-  maxDate = Date.parse d3.max _.pluck data, 'closed_at'
   xScale = d3.time.scale().domain([minDate, maxDate]).range([3, width-3])
   yScale = d3.scale.linear().domain([0, maxDate - minDate]).range([298, 50])
 
@@ -17,7 +33,7 @@ d3.csv '/data.cvs', (error, data) ->
       .scale(xScale)
       .orient('bottom')
 
-  meanData = data.map(insertMeanIntoDatum)
+  graphData = pullRequestData.graphData()
 
   svg = d3.select('.content')
     .append('svg')
@@ -47,7 +63,7 @@ d3.csv '/data.cvs', (error, data) ->
           yScale(_.last(datum) - _.first(datum))
       ).interpolate('basis')
     container.selectAll(".arc")
-      .data(meanData)
+      .data(graphData)
       .enter()
       .append('path')
       .classed("arc",true)
