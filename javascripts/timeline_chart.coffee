@@ -7,7 +7,7 @@ class TimelineChart
     @_data = []
 
   draw: () =>
-    @applyZoom()
+    #@applyZoom()
     @_draw()
 
   _draw: =>
