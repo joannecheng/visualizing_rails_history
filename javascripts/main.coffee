@@ -24,5 +24,6 @@ d3.csv '/data.cvs', (error, data) ->
   t.xScale(xScale)
     .yScale(yScale)
     .height(height)
+    .width(width)
     .data(graphData)
     .draw()

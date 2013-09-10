@@ -3,6 +3,7 @@ class TimelineChart
     @_xScale = d3.scale.linear()
     @_yScale = d3.scale.linear()
     @_height = 80
+    @_width = 720
     @_data = []
 
   draw: () =>
@@ -54,6 +55,12 @@ class TimelineChart
     if !arguments.length
       return @_yScale
     @_yScale = value
+    @
+
+  width: (value) ->
+    if !arguments.length
+      return @_width
+    @_width = value
     @
 
   height: (value) ->
