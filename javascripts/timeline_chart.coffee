@@ -7,7 +7,7 @@ class TimelineChart
     @_data = []
 
   draw: () =>
-    @applyZoom()
+    #@applyZoom()
     @_draw()
 
   _draw: =>
@@ -26,10 +26,15 @@ class TimelineChart
       .enter()
       .append('path')
       .classed("arc", true)
-      .attr('d', @line())
+      .classed("merged", (d) -> d.merged)
+      .attr('d', (d) => @line(d)(d.data))
+
+  mergedAttribute: ->
+    '#ff0000'
 
   applyZoom: =>
     zoom = d3.behavior.zoom()
+      .size([@_width, @_height])
       .scaleExtent([1,8])
       .x(@_xScale)
       .on("zoom", =>
@@ -69,15 +74,14 @@ class TimelineChart
     @_height = value
     @
 
-  line: =>
+  line: (elem) =>
     instance = @
     d3.svg.line()
-      .x((d) ->
-        instance._xScale(d))
+      .x((d) -> instance._xScale(d))
       .y((d, i) ->
-        datum = this.__data__
+        datum = elem.data
         if (i == 0 || i == datum.length- 1)
-          300
+          instance._height
         else
           instance._yScale(_.last(datum) - _.first(datum))
       ).interpolate('basis')

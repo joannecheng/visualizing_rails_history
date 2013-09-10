@@ -6,7 +6,10 @@ class PullRequestData
     dataWithMean = _.map @data, (d) ->
       created_at = Date.parse(d.created_at)
       closed_at = Date.parse(d.closed_at)
-      [created_at, created_at + 10, closed_at - 10, closed_at]
+      {
+        merged: !(d.merged_at == '')
+        data: [created_at, created_at + 10, closed_at - 10, closed_at]
+      }
     @meanData = dataWithMean
 
   graphData: =>
