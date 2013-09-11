@@ -9,7 +9,7 @@ d3.csv '/data.cvs', (error, data) ->
   xScale = d3.time.scale().domain([minDate, maxDate]).range([3, width-3])
   yScale = d3.scale.linear().domain([0, maxDate - minDate]).range([298, 50])
 
-  graphData = pullRequestData.graphData()
+  graphData = pullRequestData.dataWithMean()
 
   svg = d3.select('.content')
     .append('svg')

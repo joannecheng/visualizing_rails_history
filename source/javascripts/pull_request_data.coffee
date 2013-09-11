@@ -1,6 +1,5 @@
 class PullRequestData
   constructor: (@data) ->
-    @insertMeanIntoDataRow()
 
   insertMeanIntoDataRow: ->
     dataWithMean = _.map @data, (d) ->
@@ -12,7 +11,7 @@ class PullRequestData
       }
     @meanData = dataWithMean
 
-  graphData: =>
+  dataWithMean: =>
     @meanData ||= @insertMeanIntoDataRow()
 
   minDate: ->
@@ -21,4 +20,17 @@ class PullRequestData
   maxDate: ->
     Date.parse d3.max _.pluck @data, 'closed_at'
 
+class CommentTimelinePullRequestData
+  constructor: (@data) ->
+
+  minDate: =>
+    _.min(@allDates(), (date) -> date.ts).ts
+
+  maxDate: ->
+    _.max(@allDates(), (date) -> date.ts).ts
+
+  allDates: ->
+    _.flatten(_.pluck(@data, 'timestamps'))
+
 window.PullRequestData = PullRequestData
+window.CommentTimelinePullRequestData = CommentTimelinePullRequestData
