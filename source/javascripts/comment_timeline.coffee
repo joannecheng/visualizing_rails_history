@@ -59,12 +59,13 @@ d3.json '/comment_timeline.json', (error, data) ->
         yScale(dc) + 0.5
       )
       .classed("timeline-row#{i}", true)
-      .classed("timeline-row", true)
+      .classed("timeline-box", true)
+      .classed("merged", (d) -> d.merged )
       .attr('width', 5)
       .attr('height', 3.5)
-      .attr('opacity', '0.4')
+      .attr('opacity', '0.5')
       .on('click', (d) ->
-        d3.selectAll(".timeline-row").attr('opacity', 0.4)
+        d3.selectAll(".timeline-box").attr('opacity', 0.5)
         d3.selectAll(".timeline-row#{i}").attr('opacity', 1)
         commentText(row)
       )
