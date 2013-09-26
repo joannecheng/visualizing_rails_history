@@ -59,13 +59,12 @@ d3.json '/comment_timeline.json', (error, data) ->
         yScale(dc) + 0.5
       )
       .classed("timeline-row#{i}", true)
+      .classed("timeline-row", true)
       .attr('width', 5)
       .attr('height', 3.5)
       .attr('opacity', '0.4')
-      .on('mouseover', (d) ->
+      .on('click', (d) ->
+        d3.selectAll(".timeline-row").attr('opacity', 0.4)
         d3.selectAll(".timeline-row#{i}").attr('opacity', 1)
         commentText(row)
-      )
-      .on('mouseout', (d) ->
-        d3.selectAll(".timeline-row#{i}").attr('opacity', 0.4)
       )
