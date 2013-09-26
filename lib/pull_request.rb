@@ -20,6 +20,10 @@ class PullRequest
     pull_request_data['comments_url']
   end
 
+  def merged?
+    pull_request_data['merged_at'] != nil
+  end
+
   def pull_request_data
     @rg.pull_request_by_id(id)
   end

@@ -29,7 +29,7 @@ describe PullRequestComments do
       end
 
       dates = %w(2013-08-31T03:08:14Z 2013-08-31T03:10:04Z 2013-08-31T03:38:13Z 2013-08-31T06:19:12Z)
-      expect(prc.comment_timeline).to eq dates.map { |d| Time.parse(d).to_i*1000 }
+      expect(prc.comment_timeline[0][:ts]).to eq Time.parse('2013-08-31T03:08:14Z').to_i*1000
     end
   end
 

@@ -19,4 +19,13 @@ describe PullRequest do
       expect(pr.comments_url).to eq 'https://api.github.com/repos/rails/rails/issues/12093/comments'
     end
   end
+
+  describe '.merged?' do
+    it 'returns merged status for merged pull request' do
+      populate_fake_redis
+      fake_redis_gateway = RedisGateway.new(@redis)
+      pr = PullRequest.by_id(fake_redis_gateway, 8002141)
+      expect(pr.merged?).to eq true
+    end
+  end
 end
