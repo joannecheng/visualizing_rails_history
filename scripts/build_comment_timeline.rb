@@ -12,7 +12,7 @@ comment_timeline = []
 ids.each do |id|
   pr = PullRequest.new rg, id
   prc = PullRequestComments.new(pr)
-  comment_timeline << { timestamps: prc.comment_timeline }
+  comment_timeline << { timestamps: prc.comment_timeline, merged: pr.merged?, title: pr.title, html_url: pr.html_url }
 end
 
 puts comment_timeline.to_json

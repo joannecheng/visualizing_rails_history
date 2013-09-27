@@ -24,6 +24,14 @@ class PullRequest
     pull_request_data['merged_at'] != nil
   end
 
+  def title
+    pull_request_data['title']
+  end
+
+  def html_url
+    pull_request_data['html_url']
+  end
+
   def pull_request_data
     @rg.pull_request_by_id(id)
   end

@@ -12,7 +12,7 @@ class PullRequestComments
 
   def comment_timeline
     comments.map do |comment|
-      { ts: Time.parse(comment['created_at']).to_i*1000, body: comment['body'], merged: @pull_request.merged? }
+      { ts: Time.parse(comment['created_at']).to_i*1000 }
     end
   end
 
