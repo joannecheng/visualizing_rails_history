@@ -65,6 +65,11 @@ d3.json '/comment_timeline.json', (error, data) ->
       .attr('height', 3.5)
       .on('click', (d) ->
         d3.selectAll(".timeline-box").classed('picked', false)
+          .transition()
+          .style("opacity","0.2")
         d3.selectAll(".timeline-row#{i}").classed('picked', true)
+          .transition()
+          .style("opacity","1")
+
         commentText(row)
       )
