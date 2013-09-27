@@ -47,29 +47,28 @@ d3.json '/comment_timeline.json', (error, data) ->
     .call(xAxis)
     .attr('transform', 'translate(0, 402)')
 
-  _.each data, (row, i) ->
-    container
-      .selectAll(".timeline-row#{i}")
-      .data(row.timestamps)
-      .enter()
-      .append('rect')
-      .attr('x', (d) -> xScale(new Date(d.ts).setHours(0,0,0,0)) + 0.5)
-      .attr('y', (d) ->
-        dc = markDate(d.ts)
-        yScale(dc) + 0.5
-      )
-      .classed("timeline-row#{i}", true)
-      .classed("timeline-box", true)
-      .classed("merged", (d) -> d.merged )
-      .attr('width', 5)
-      .attr('height', 3.5)
-      .on('click', (d) ->
-        d3.selectAll(".timeline-box").classed('picked', false)
-          .transition()
-          .style("opacity","0.2")
-        d3.selectAll(".timeline-row#{i}").classed('picked', true)
-          .transition()
-          .style("opacity","1")
+  rows = container.selectAll('.timeline-row')
+    .data(data)
+    .enter()
+    .append('g')
+    .classed((d, i) -> "timeline-row#{i}")
+    .attr('class', (d) -> if d.merged then 'merged' else 'unmerged')
+    .on('click', (d, i) ->
+      d3.selectAll('.picked').classed('picked', false)
+      d3.select(@).classed('picked', true)
+      $('.textbox').html("<a href='#{d.html_url}' target='_blank'>#{d.title}</a>")
+    )
 
-        commentText(row)
-      )
+  timelineBoxes = rows
+    .selectAll('rect.timeline-row')
+    .data((d) -> d.timestamps)
+    .enter()
+    .append('rect')
+    .attr('x', (d) -> xScale(new Date(d.ts).setHours(0,0,0,0)) + 0.5)
+    .attr('y', (d) ->
+      dc = markDate(d.ts)
+      yScale(dc) + 0.5
+    )
+    .classed("timeline-box", true)
+    .attr('width', 5)
+    .attr('height', 3.5)
