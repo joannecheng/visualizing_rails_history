@@ -92,5 +92,5 @@ d3.json 'comment_timeline.json', (error, data) ->
       .data(data).enter()
       .append('text')
       .attr('x', (d) -> xScale(new Date(d.datetime)) - 2)
-      .attr('y', h-10)
+      .attr('y', (d) -> h - Math.random() * 50)
       .text((d) -> d.version)
