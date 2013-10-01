@@ -51,16 +51,17 @@ d3.json '/comment_timeline.json', (error, data) ->
     .data(data)
     .enter()
     .append('g')
-    .classed((d, i) -> "timeline-row#{i}")
     .attr('class', (d) -> if d.merged then 'merged' else 'unmerged')
+    .classed("timeline-row", true)
     .on('click', (d, i) ->
+      d3.selectAll('.timeline-row').classed('unpicked', true)
       d3.selectAll('.picked').classed('picked', false)
-      d3.select(@).classed('picked', true)
+      d3.select(@).classed('picked', true).classed('unpicked', false)
       $('.textbox').html("<a href='#{d.html_url}' target='_blank'>#{d.title}</a>")
     )
 
   timelineBoxes = rows
-    .selectAll('rect.timeline-row')
+    .selectAll('rect.timeline-box')
     .data((d) -> d.timestamps)
     .enter()
     .append('rect')
@@ -72,3 +73,5 @@ d3.json '/comment_timeline.json', (error, data) ->
     .classed("timeline-box", true)
     .attr('width', 5)
     .attr('height', 3.5)
+
+  new CommentTimelineLegend(svg)
