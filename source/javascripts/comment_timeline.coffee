@@ -9,7 +9,7 @@ commentText = (row) ->
     .classed('row', true)
     .text((d) -> d.body)
 
-d3.json '/comment_timeline.json', (error, data) ->
+d3.json 'comment_timeline.json', (error, data) ->
   w = 1500
   h = 500
   dateCounter = {}
@@ -75,3 +75,22 @@ d3.json '/comment_timeline.json', (error, data) ->
     .attr('height', 3.5)
 
   new CommentTimelineLegend(svg)
+
+  d3.csv 'release_dates.cvs', (error, data) ->
+    releaseDateLine = svg.selectAll('.release-date')
+      .data(data).enter()
+      .append('line')
+      .attr('x1', (d) -> xScale(new Date(d.datetime)) - 2)
+      .attr('x2', (d) -> xScale(new Date(d.datetime)) - 2)
+      .attr('y1', h-10)
+      .attr('y2', 30)
+      .attr('stroke', '#F01122')
+      .attr('stroke-dasharray', '5')
+      .classed('release-date', true)
+
+    releaseDateLabel = svg.selectAll('.release-date-label')
+      .data(data).enter()
+      .append('text')
+      .attr('x', (d) -> xScale(new Date(d.datetime)) - 2)
+      .attr('y', h-10)
+      .text((d) -> d.version)
