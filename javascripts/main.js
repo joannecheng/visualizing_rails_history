@@ -1,5 +1,5 @@
 (function() {
-  d3.csv('/data.cvs', function(error, data) {
+  d3.csv('data.cvs', function(error, data) {
     var container, graphData, height, maxDate, minDate, paddingBottom, pullRequestData, svg, t, width, xScale, yScale;
     width = 1000;
     height = 300;
