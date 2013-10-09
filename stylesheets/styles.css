@@ -25,3 +25,23 @@ body {
   stroke: #222222;
   stroke-width: 1.5px;
   opacity: 0.4; }
+
+/* line 24, /Users/joannecheng/dev/visualizing_rails_history/source/stylesheets/styles.sass */
+.legend {
+  text-align: left;
+  margin-top: 30px;
+  margin-left: 12%; }
+  /* line 28, /Users/joannecheng/dev/visualizing_rails_history/source/stylesheets/styles.sass */
+  .legend .merged {
+    opacity: 1;
+    color: black; }
+  /* line 31, /Users/joannecheng/dev/visualizing_rails_history/source/stylesheets/styles.sass */
+  .legend .unmerged {
+    opacity: 1;
+    color: steelblue; }
+
+/* line 35, /Users/joannecheng/dev/visualizing_rails_history/source/stylesheets/styles.sass */
+.description {
+  text-align: left;
+  margin-top: 30px;
+  margin-left: 10%; }
