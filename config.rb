@@ -51,6 +51,8 @@ set :js_dir, 'javascripts'
 
 set :images_dir, 'images'
 activate :livereload
+activate :relative_assets
+set :relative_links, true
 
 activate :deploy do |deploy|
   deploy.build_before = true

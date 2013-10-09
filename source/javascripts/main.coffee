@@ -1,4 +1,4 @@
-d3.csv '/data.cvs', (error, data) ->
+d3.csv 'data.cvs', (error, data) ->
   width = 1000
   height = 300
   paddingBottom = 20
