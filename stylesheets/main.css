@@ -1,0 +1,62 @@
+/* line 3, /Users/joannecheng/dev/visualizing_rails_history/source/stylesheets/main.sass */
+body {
+  height: 100%;
+  margin-left: 2em; }
+  /* line 5, /Users/joannecheng/dev/visualizing_rails_history/source/stylesheets/main.sass */
+  body a:visited {
+    color: #323232; }
+  /* line 7, /Users/joannecheng/dev/visualizing_rails_history/source/stylesheets/main.sass */
+  body a:link {
+    color: #323232; }
+  /* line 9, /Users/joannecheng/dev/visualizing_rails_history/source/stylesheets/main.sass */
+  body a:active {
+    color: #323232; }
+
+/* line 14, /Users/joannecheng/dev/visualizing_rails_history/source/stylesheets/main.sass */
+.nav-header {
+  font-family: "Lato";
+  font-size: 1.33em; }
+  /* line 18, /Users/joannecheng/dev/visualizing_rails_history/source/stylesheets/main.sass */
+  .nav-header h1 {
+    padding-top: 1em;
+    color: #323232;
+    font-size: 42px;
+    margin: 0;
+    width: auto; }
+
+/* line 25, /Users/joannecheng/dev/visualizing_rails_history/source/stylesheets/main.sass */
+nav {
+  width: 50%;
+  float: right;
+  margin: 0;
+  padding: 0; }
+  /* line 30, /Users/joannecheng/dev/visualizing_rails_history/source/stylesheets/main.sass */
+  nav ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none; }
+  /* line 34, /Users/joannecheng/dev/visualizing_rails_history/source/stylesheets/main.sass */
+  nav li {
+    display: inline-block;
+    margin-right: 10px; }
+
+/* line 38, /Users/joannecheng/dev/visualizing_rails_history/source/stylesheets/main.sass */
+.content {
+  color: #323232;
+  width: 90%;
+  height: 100%;
+  margin-top: 2em;
+  padding-top: 2em;
+  font-family: Palatino, serif;
+  font-size: 1em;
+  line-height: 1.2em; }
+
+/* line 49, /Users/joannecheng/dev/visualizing_rails_history/source/stylesheets/main.sass */
+.project-list .project-img {
+  margin-bottom: 2em;
+  padding: 0em; }
+  /* line 53, /Users/joannecheng/dev/visualizing_rails_history/source/stylesheets/main.sass */
+  .project-list .project-img img {
+    border: 1px solid #101010;
+    padding: 0;
+    margin: 0; }

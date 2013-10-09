@@ -1,0 +1,33 @@
+/* line 1, /Users/joannecheng/dev/visualizing_rails_history/source/stylesheets/comment_timeline_styles.sass */
+.textbox {
+  margin-left: 14px;
+  width: 66%;
+  text-align: left;
+  position: fixed; }
+
+/* line 8, /Users/joannecheng/dev/visualizing_rails_history/source/stylesheets/comment_timeline_styles.sass */
+.axis path {
+  fill: none;
+  stroke: black; }
+
+/* line 12, /Users/joannecheng/dev/visualizing_rails_history/source/stylesheets/comment_timeline_styles.sass */
+.axis text {
+  pointer-events: none;
+  font-size: 11px; }
+
+/* line 16, /Users/joannecheng/dev/visualizing_rails_history/source/stylesheets/comment_timeline_styles.sass */
+.merged {
+  fill: #333333; }
+
+/* line 19, /Users/joannecheng/dev/visualizing_rails_history/source/stylesheets/comment_timeline_styles.sass */
+.unmerged {
+  fill: #999999; }
+
+/* line 22, /Users/joannecheng/dev/visualizing_rails_history/source/stylesheets/comment_timeline_styles.sass */
+.picked {
+  fill: #111111;
+  opacity: 1; }
+
+/* line 26, /Users/joannecheng/dev/visualizing_rails_history/source/stylesheets/comment_timeline_styles.sass */
+.unpicked {
+  opacity: 0.3; }
